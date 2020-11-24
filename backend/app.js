@@ -5,6 +5,8 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const { NotFoundError } = require("./expressError");
+
 
 const app = express();
 
@@ -13,6 +15,12 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 
+
+
+/** Handle 404 errors -- this matches everything */
+app.use(function (req, res, next) {
+  return next(new NotFoundError());
+});
 
 
 /** Generic error handler; anything unhandled goes here. */
