@@ -1,5 +1,5 @@
 CREATE TABLE films (
-  imdb_id PRIMARY KEY,
+  imdb_id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   release_year INTEGER,
   description TEXT,
