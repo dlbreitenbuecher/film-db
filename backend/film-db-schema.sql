@@ -1,6 +1,6 @@
 CREATE TABLE films (
-  id SERIAL INTEGER PRIMARY KEY,
-  imdb_id TEXT NOT NULL 
+  id SERIAL PRIMARY KEY,
+  imdb_id TEXT NOT NULL, 
   title TEXT NOT NULL,
   director TEXT,
   release_year INTEGER,
