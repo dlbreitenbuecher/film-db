@@ -18,7 +18,6 @@ class Film {
    */
   static async create(
       { imdbID, title, director, year, genre, description, rated, runtime, poster }) {
-        debugger;
     // Check for duplicate entries
     const duplicateCheck = await db.query(
       `SELECT imdb_id
@@ -78,7 +77,6 @@ class Film {
      *    undefined
      */
     static async get(imdbID) {
-      debugger;
       const result = await db.query(
         `SELECT imdb_id AS "imdbID",
                 title,
@@ -95,10 +93,53 @@ class Film {
           WHERE imdb_id = $1`,
         [imdbID]
       );
-      debugger;
       const filmDetail = result.rows[0]
 
       return filmDetail;
+    }
+
+    /** Adds 1 to thumbs_up vote count
+     * 
+     * Accepts:
+     *   imdbID
+     * 
+     * Returns:
+     *    { thumbsUp }
+     */
+    static async thumbsUp(imdbID) {
+      const result = await db.query(
+        `UPDATE films
+         SET thumbs_up = thumbs_up + 1
+         WHERE imdb_id = $1
+         RETURNING thumbs_up AS "thumbsUp"`,
+         [imdbID]
+      );
+
+      const updatedThumbsUp = result.rows[0];
+
+      return updatedThumbsUp;
+    }
+
+    /** Adds 1 to thumbs_down vote count
+     * 
+     * Accepts:
+     *  imdbID
+     * 
+     * Returns:
+     *  { thumbsDown }
+     */
+    static async thumbsDown(imdbID) {
+      const result = await db.query(
+        `UPDATE films
+        SET thumbs_down = thumbs_down + 1
+        WHERE imdb_id = $1
+        RETURNING thumbs_down AS "thumbsDown"`,
+        [imdbID]
+      );
+
+      const updatedThumbsDown = result.rows[0];
+
+      return updatedThumbsDown;
     }
 }
 

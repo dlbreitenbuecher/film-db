@@ -42,7 +42,6 @@ router.get('/', async function (req, res, next) {
  *     poster, thumbsUp, thumbsDown } 
  */
 router.get('/:imdbID', async function (req, res, next) {
-  debugger;
   const imdbID = req.params.imdbID;
 
   // First see if the film is already in the database. If it is, query the database and return it
@@ -59,13 +58,44 @@ router.get('/:imdbID', async function (req, res, next) {
   try {
     const filmDetail = await getFilmDetailFromAPI(imdbID);
     const storedFilmDetail = await Film.create(filmDetail);
-    
+
     return res.json(storedFilmDetail);
   } catch (err) {
     return next(err);
   }
 });
 
+
+/**POST /:imdbID/vote/:direction
+ * 
+ * Add 1 thumbs-up or thumbs-down vote for a film
+ * 
+ * Accepts:
+ *   req.params = { imdbID, direction }
+ *      where direction is either 'up' or 'down'
+ * 
+ * Returns:
+ *    if direction is 'up', returns updated thumbsUp count
+ *        { thumbsUP }
+ *    otherwise returns updated thumbsDown count
+ *        { thumbsDown }
+ */
+router.post('/:imdbID/vote/:direction', async function (req, res, next) {
+  const { imdbID, direction } = req.params;
+
+  try {
+    if (direction.toLowerCase() === 'up') {
+      const updatedVote = await Film.thumbsUp(imdbID);
+      console.log('updatedVote in Post Vote:', updatedVote);
+      return res.json(updatedVote);
+    } else if (direction.toLowerCase() === 'down') {
+      const updatedVote = await Film.thumbsDown(imdbID);
+      return res.json(updatedVote);
+    }
+  } catch (err) {
+    return next(err);
+  }
+})
 
  
 
