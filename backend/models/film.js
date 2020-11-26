@@ -10,15 +10,15 @@ class Film {
   /** Create a film entry in the db and return new film data
    * 
    * Accepts: 
-   *  { imdbID, title, director, releaseYear, genre, rating, runtime,
-   *    logoUrl, thumbsUp, thumbsDown }
+   *  { imdbID, title, director, year, genre, description, rated, runtime, poster }
    * 
    * Returns: 
-   *  { imdbID, title, director, releaseYear, genre, rating, runtime,
-   *    logoUrl, thumbsUp, thumbsDown }
+   *  { imdbID, title, director, year, genre, description, rated, runtime,
+   *    poster, thumbsUp, thumbsDown }
    */
   static async create(
-      { imdbID, title, director, releasseYear, genre, rating, runtime, logoUrl }) {
+      { imdbID, title, director, year, genre, description, rated, runtime, poster }) {
+        debugger;
     // Check for duplicate entries
     const duplicateCheck = await db.query(
       `SELECT imdb_id
@@ -39,22 +39,22 @@ class Film {
         release_year,
         description,
         genre,
-        rating,
+        rated,
         runtime,
-        logo_url)
+        poster)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        RETURNING imdb_id AS 'imdbID', title, director, release_year AS 'releaseYear',
-                  description, genre, rating, runtime, logo_url AS 'logoURL'`,
+        RETURNING imdb_id AS "imdbID", title, director, release_year AS year, description, genre,
+                  rated, runtime, poster, thumbs_up AS "thumbsUp", thumbs_down AS "thumbsDown" `,
       [
         imdbID,
         title,
         director,
-        releasseYear,
+        year,
         description, 
         genre,
-        rating,
+        rated,
         runtime,
-        logoUrl
+        poster
       ]
     )
 
@@ -71,28 +71,31 @@ class Film {
      * 
      * Returns:
      *  if in db:
-     *    { imdbID, title, director, releaseYear, genre, rating, runtime,
-     *        logoUrl, thumbsUp, thumbsDown }
+     *    { imdbID, title, director, year, genre, description, rated, runtime,
+     *        poster, thumbsUp, thumbsDown }
      * 
      *  if not in db:
      *    undefined
      */
     static async get(imdbID) {
+      debugger;
       const result = await db.query(
-        `SELECT imdb_id AS 'imdbID,
+        `SELECT imdb_id AS "imdbID",
                 title,
                 director,
-                release_year AS 'releaseYear,
-                description,
+                release_year AS year,
                 genre, 
-                rating,
+                description,
+                rated,
                 runtime,
-                logo_url AS logoURL
+                poster,
+                thumbs_up AS "thumbsUp",
+                thumbs_down AS "thumbsDown"
           FROM films
           WHERE imdb_id = $1`,
         [imdbID]
       );
-
+      debugger;
       const filmDetail = result.rows[0]
 
       return filmDetail;

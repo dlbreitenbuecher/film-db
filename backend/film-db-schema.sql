@@ -1,14 +1,14 @@
 CREATE TABLE films (
   id SERIAL PRIMARY KEY,
-  imdb_id TEXT NOT NULL, 
+  imdb_id TEXT UNIQUE NOT NULL, 
   title TEXT NOT NULL,
   director TEXT,
   release_year INTEGER,
   description TEXT,
   genre TEXT,
-  rating TEXT,
+  rated TEXT,
   runtime TEXT,
-  logo_url TEXT,
+  poster TEXT,
   thumbs_up INTEGER DEFAULT 0,
   thumbs_down INTEGER DEFAULT 0
 );
