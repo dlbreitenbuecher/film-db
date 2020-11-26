@@ -3,7 +3,7 @@ CREATE TABLE films (
   imdb_id TEXT UNIQUE NOT NULL, 
   title TEXT NOT NULL,
   director TEXT,
-  release_year INTEGER,
+  release_year TEXT,
   description TEXT,
   genre TEXT,
   rated TEXT,
