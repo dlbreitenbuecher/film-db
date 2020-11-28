@@ -40,6 +40,8 @@ router.get('/', async function (req, res, next) {
  * Returns: 
  *   { imdbID, title, director, year, genre, description, rated, runtime, 
  *     poster, thumbsUp, thumbsDown } 
+ * 
+ * Throws a NotFoundError if movie is not present in IMDB (see fn getFilmDetailFromAPI)
  */
 router.get('/:imdbID', async function (req, res, next) {
   const imdbID = req.params.imdbID;

@@ -5,6 +5,7 @@ const axios = require('axios');
 const MOVIE_API_URL = 'https://movie-database-imdb-alternative.p.rapidapi.com/'
 const { API_SECRET_KEY } = require('../config');
 const RAPID_API_HOST = 'movie-database-imdb-alternative.p.rapidapi.com'
+const { NotFoundError } = require('../expressError');
 
 
 /** Search for films by title
@@ -59,6 +60,10 @@ async function getFilmDetailFromAPI(imdbIDFromRoute) {
       'x-rapidapi-host': RAPID_API_HOST
     }
   })
+
+  if (response.data.Response === 'False') {
+    throw new NotFoundError(`No film found with imdbID: ${imdbIDFromRoute}`)
+  }
 
   const { imdbID, Title, Director, Year, Genre, Description, Rated, Runtime, Poster } = response.data;
 
