@@ -117,6 +117,10 @@ class Film {
 
       const updatedThumbsUp = result.rows[0];
 
+      if (updatedThumbsUp === undefined) {
+        throw new NotFoundError(`Film not in DataBase. imdbID: ${imdbID}`);
+      }
+
       return updatedThumbsUp;
     }
 
@@ -139,6 +143,10 @@ class Film {
 
       const updatedThumbsDown = result.rows[0];
 
+      if (updatedThumbsDown === undefined) {
+        throw new NotFoundError(`Film not in DataBase. imdbID: ${imdbID}`);
+      }
+      
       return updatedThumbsDown;
     }
 }
