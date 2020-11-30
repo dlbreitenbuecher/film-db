@@ -29,6 +29,10 @@ async function searchFilmsWithAPI(title) {
     }
   })
 
+  if (res.data.Response === 'False') {
+    throw new NotFoundError(`No film found with title: ${title}`);
+  }
+
   const searchResults = res.data.Search.map(film => ({
     title: film.Title,
     year: film.Year,
@@ -91,5 +95,6 @@ async function getFilmDetailFromAPI(imdbIDFromRoute) {
 
 module.exports = { 
   searchFilmsWithAPI,
-  getFilmDetailFromAPI
+  getFilmDetailFromAPI,
+  MOVIE_API_URL,
 };
