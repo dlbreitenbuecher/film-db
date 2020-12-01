@@ -17,6 +17,8 @@ const router = new express.Router();
  *    
  * Returns 
  *   { films: [ { title, year, imdbID, poster },...] }
+ * 
+ * Throws a NotFoundError if movie is not present in IMDB (see fn getFilmDetailFromAPI)
  */
 router.get('/', async function (req, res, next) {
   const title = req.query.title;
@@ -50,7 +52,7 @@ router.get('/:imdbID', async function (req, res, next) {
   try {
     const filmDetail = await Film.get(imdbID);
     if (filmDetail !== undefined) {
-      return res.json({ filmDetail });
+      return res.json(filmDetail);
     }
   } catch (err) {
     return next(err)
@@ -88,7 +90,6 @@ router.post('/:imdbID/vote/:direction', async function (req, res, next) {
   try {
     if (direction.toLowerCase() === 'up') {
       const updatedVote = await Film.thumbsUp(imdbID);
-      console.log('updatedVote in Post Vote:', updatedVote);
       return res.json(updatedVote);
     } else if (direction.toLowerCase() === 'down') {
       const updatedVote = await Film.thumbsDown(imdbID);

@@ -26,15 +26,11 @@ describe('search', function () {
 
   test('successfully search', async function () {
     axiosMock.onGet(`${MOVIE_API_URL}`, {
-      params: { s: 'grey gardens', r: 'json' },
-      // headers: {
-      //   'x-rapidapi-key': 'API_SECRET_KEY',
-      //   'x-rapidapi-host': 'RAPID_API_HOST'
-      // }
+      params: { s: 'grey gardens', r: 'json' }
     })
       .reply(200, {
-        "Search": [
-          {
+        "Search":
+          [{
             "Title": "Grey Gardens",
             "Year": "1975",
             "imdbID": "tt0073076",
