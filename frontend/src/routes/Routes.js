@@ -18,9 +18,9 @@ import SearchContainer from '../search/SearchContainer';
           <HomePage />
         </Route> */}
 
-        {/* <Route exact path='/films/:imdbID'>
+        <Route exact path='/films/:imdbID'>
           <FilmDetailContainer />
-        </Route> */}
+        </Route>
 
         <Route exact path='/films'>
           <SearchContainer />
