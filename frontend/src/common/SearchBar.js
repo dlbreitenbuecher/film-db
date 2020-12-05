@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { Paper, Input, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Button } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 /**SearchBar
  * 
- * Used to search for films. On submission,
- * the searchFor function runs in the parent and calls the 
- * backend to retrieve a list of films matching the search term
- * 
- * Props:
- *  - searchFor: 
- *      fn that handles search submission. 
+ * Used to search for films. 
+ * On submission, the user is redirected to 
+ * /film/search/?title=searchTerm
  * 
  * State:
  *  - searchTerm: 
@@ -18,16 +15,14 @@ import { useHistory } from 'react-router-dom';
  * 
  *  { HomePage, SearchResultContainer } -> SearchBar
  */
-function SearchBar({ searchFor }) {
+function SearchBar() {
   console.debug('SearchForm');
 
   const [searchTerm, setSearchTerm] = useState('');
   const history = useHistory();
 
-  /** parent will search for films */
   function handleSubmit(evt) {
     evt.preventDefault();
-    // searchFor(searchTerm);
     history.push(`/films/search?title=${searchTerm}`);
   };
 
@@ -38,18 +33,53 @@ function SearchBar({ searchFor }) {
   return (
     <div className='SearchBar'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='searchTerm'>Search Films</label>
-        <input
-          name='searchTerm'
-          placeholder='Search by film title'
+      <FormControl fullWidth variant='outlined'>
+        <InputLabel htmlFor='search'>Search</InputLabel>
+        <OutlinedInput
+          id='search'
           value={searchTerm}
+          type='text'
           onChange={handleChange}
-        />
-
-        <button type='submit'>Search</button>
+          placeholder='Search by film title'
+          endAdornment={
+            <InputAdornment position='end'>
+              <Button type='submit'>
+              <SearchIcon
+                aria-label='submit search term'
+                edge='end'
+                ></SearchIcon>
+                </Button>
+            </InputAdornment>
+          }
+          labelWidth={60}
+          />
+      </FormControl>
       </form>
+    
     </div>
   )
 }
 
 export default SearchBar;
+
+
+/*
+
+  <form onSubmit={handleSubmit}>
+        <TextField
+          label='Seach Films'
+          name='searchTerm'
+          placeholder='Search by film title'
+          value={searchTerm}
+          onChange={handleChange}
+          color='primary'
+          variant='outlined'
+          size='small'
+          width='50ch'
+        />
+
+        <button type='submit'>Search</button>
+      </form>
+
+
+*/

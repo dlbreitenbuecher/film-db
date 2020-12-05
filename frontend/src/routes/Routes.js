@@ -1,8 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import HomePage from '../homepage/HomePage';
 import SearchContainer from '../search/SearchContainer';
-import FilmDetailContainer from '../film/FilmDetailContainer'
+import FilmDetailContainer from '../film/FilmDetailContainer';
 
 /**Site-wide routes
  * 
@@ -15,9 +16,9 @@ import FilmDetailContainer from '../film/FilmDetailContainer'
     <div>
       <Switch>
 
-        {/* <Route exact path='/'>
+        <Route exact path='/'>
           <HomePage />
-        </Route> */}
+        </Route>
 
         <Route path='/films/search'>
           <SearchContainer />

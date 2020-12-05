@@ -1,0 +1,36 @@
+/* .HomePage {
+    background-image: url('../assets/film-background.jpg');
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+} */
+
+/* body {
+    background-image: url('../assets/film-background.jpg');
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+} */
+
+
+
+.HomePage-BG {  
+  background-image:url('../assets/film-background.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  bottom:0;
+  filter:contrast(.7) brightness(.7);  
+  left:0;
+  position:fixed;
+  right:0;
+  top:0;
+  z-index: -1;
+}
+
+.HomePage {
+    height: 100vh;
+}
