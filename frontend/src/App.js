@@ -14,12 +14,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <h1>Film-DB</h1>
-        </header>
         <Routes />
-      </div>
     </BrowserRouter>
   );
 }
