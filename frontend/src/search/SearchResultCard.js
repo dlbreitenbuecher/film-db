@@ -69,7 +69,7 @@ function SearchResultCard({ title, year, imdbID, poster}) {
 
   return(
     <Card className={classes.root} onMouseOver={toggleRaised} onMouseOut={toggleRaised} raised={raised}>
-      <Box component={RouterLink} to={`/films/${imdbID}`} className={classes.link}>
+      <Box component={RouterLink} to={`/film/${imdbID}`} className={classes.link}>
         <CardMedia
           component='img'
           className={classes.media}

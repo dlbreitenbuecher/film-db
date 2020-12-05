@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 /**SearchBar
@@ -21,11 +22,13 @@ function SearchBar({ searchFor }) {
   console.debug('SearchForm');
 
   const [searchTerm, setSearchTerm] = useState('');
+  const history = useHistory();
 
   /** parent will search for films */
   function handleSubmit(evt) {
     evt.preventDefault();
-    searchFor(searchTerm);
+    // searchFor(searchTerm);
+    history.push(`/films/search?title=${searchTerm}`);
   };
 
   function handleChange(evt) {

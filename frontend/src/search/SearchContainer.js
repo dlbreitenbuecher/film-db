@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import SearchBar from '../common/SearchBar';
-import FilmApi from '../api/api';
-import SearchResultList from './SearchResultList';
 import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 
+import SearchBar from '../common/SearchBar';
+import FilmApi from '../api/api';
+import SearchResultList from './SearchResultList';
+import useQuery from '../hooks/useQuery';
 
 /**Container for components related to searching for a film
  * 
  * State:
- *  searchResults: array of film objects found by searching for a specific title
+ *  - searchResults: array of film objects found by searching for a specific title
  *    [ { title, year, imdbID, poster },...]
  *        (If no results are found by the search, searchResults is an empty array)
  * 
- * Routed at: /films
+ *  - isLoading: true/false
+ * 
+ *  - searchTerm: (title - string)
+ *      initial (and subsequent) value derived from query string
+ * 
+ * Routed at: /films/search
  * 
  * Routes -> SearchContainer -> { SearchBar, SearchResultList }
  */
 function SearchContainer() {
   console.debug('SearchContainer');
+
+  console.log('In SearchContainer');
 
   // TODO - DELETE
   // const devProps = [
@@ -44,11 +52,10 @@ function SearchContainer() {
 
   // const devTerm = 'Grey Gardens'
 
+  const query = useQuery();
   const [isLoading, setIsLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(query.get('title'));
   const [searchResults, setSearchResults] = useState(null);
-
-  // TODO uncomment
 
   /**Call backend once user submits a search term */
   useEffect(function fetchFilmsOnSearch() {
@@ -66,12 +73,21 @@ function SearchContainer() {
       }
     }
 
-    if (searchTerm !== null) {
-      fetchFilms();
-    }
+    fetchFilms();
   },
     [searchTerm]
   );
+
+  /** Compares query string with current value for searchTerm. 
+   *    sets searchTerm = current value of query string
+   */
+  useEffect(function checkQueryString() {
+    const queryString = query.get('title');
+
+    if (queryString !== searchTerm) {
+      setSearchTerm(queryString);
+    }
+  })
 
 
   /** Custome styles for Material UI components */
@@ -83,6 +99,7 @@ function SearchContainer() {
 
   const classes = useStyles();
 
+  // TODO Delete!
   /**Sets searchTerm state upon form submission in SearchBar */
   function searchFilms(term) {
     setSearchTerm(term);
@@ -128,7 +145,9 @@ return (
         </p>
     }
 
-    {renderSearchResults()}
+  {!isLoading &&
+    renderSearchResults()
+  }
   </main>
 )
 }
