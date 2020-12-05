@@ -20,3 +20,5 @@ Search for, read about, and vote on films. Data comes from IMDB
 
 ### Running tests in the backend
 `npm test`
+
+To view  gif of the app, please visit: https://recordit.co/I09zDdPpqe
