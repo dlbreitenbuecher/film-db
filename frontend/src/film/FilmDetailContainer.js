@@ -13,7 +13,7 @@ import FilmDetail from './FilmDetail';
  *     { imdbID, title, director, year, genre, description, rated, runtime, 
  *        poster, thumbsUp, thumbsDown } 
  * 
- * Routed at: /films/:imdbID
+ * Routed at: /film/:imdbID
  * 
  * Routes -> FilmDetailContainer -> FilmDetail
  */

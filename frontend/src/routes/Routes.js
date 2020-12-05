@@ -19,14 +19,13 @@ import FilmDetailContainer from '../film/FilmDetailContainer'
           <HomePage />
         </Route> */}
 
-        <Route exact path='/films/:imdbID'>
-          <FilmDetailContainer />
-        </Route>
-
-        <Route exact path='/films'>
+        <Route path='/films/search'>
           <SearchContainer />
         </Route>
 
+        <Route exact path='/film/:imdbID'>
+          <FilmDetailContainer />
+        </Route>
 
         <Redirect to='/' />
 
