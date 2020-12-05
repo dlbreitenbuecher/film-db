@@ -69,7 +69,9 @@ async function getFilmDetailFromAPI(imdbIDFromRoute) {
     throw new NotFoundError(`No film found with imdbID: ${imdbIDFromRoute}`)
   }
 
-  const { imdbID, Title, Director, Year, Genre, Description, Rated, Runtime, Poster } = response.data;
+  const { imdbID, Title, Director, Year, Genre, Plot, Rated, Runtime, Poster } = response.data;
+
+  const Description = Plot;
 
   const filmDetail = {
     imdbID,
