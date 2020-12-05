@@ -17,8 +17,6 @@ import './HomePage.css';
 function HomePage() {
   console.debug('HomePage');
 
-
-
   const useStyles = makeStyles({
     root: {
       marginTop: 200,
