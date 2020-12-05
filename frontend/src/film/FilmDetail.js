@@ -6,18 +6,6 @@ import { ThumbUp, ThumbDown } from '@material-ui/icons';
 /**Render details about a film
  * Users can vote a film up or down
  * 
-//  * TODO Edit/DELETE!
- * State:
- *  - isLoading (true/false)
- * 
- *  - thumbsUp:
- *    # of thumbsUp votes
- * 
- *  - thumbsDown
- *    # of thumbsDown votes
- * (intiail values for thumbsUp/thumbsDown supplied by props.film)
- * 
- * 
  * Props:
  *  - film:
  *      { imdbID, title, director, year, genre, description, rated, runtime, 
@@ -31,18 +19,20 @@ import { ThumbUp, ThumbDown } from '@material-ui/icons';
 function FilmDetail({ film, vote }) {
   console.debug('FilmDetail');
 
-  console.log('film', film);
-
   const { title, director, year, genre, description, rated, runtime,
     poster, thumbsUp, thumbsDown } = film;
 
   const useStyles = makeStyles({
+    root: {
+      backgroundColor: '#F5F4F5',
+      height: '90vh'
+    },
     dataType: {
       fontWeight: 'bold',
       fontSize: '1rem'
     },
-    border: {
-      border: '2px solid black'
+    paper: {
+      backgroundColor: '#F3F3F3'
     }
   })
 
@@ -50,13 +40,14 @@ function FilmDetail({ film, vote }) {
   
   return (
     <div className='FilmDetail'>
-      <Box my={3}>
-        <Typography variant='h3' component='h1'>
-          Search Results for {title}
+      <Box pt={8} pb={5}>
+        <Typography variant='h4' component='h1' align='center'>
+          Details for <em>{title}</em>
         </Typography>
       </Box>
 
-      <Paper>
+      <Box mx='auto' width={4/5} maxWidth={1000}>
+      <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <img src={poster} alt='Movie Poster' />
@@ -87,7 +78,7 @@ function FilmDetail({ film, vote }) {
 
 
               {/* Year, Rating, Genre, Runtime Box */}
-              <Grid item container className={classes.border}>
+              <Grid item container>
 
                 <Grid item container alignItems='baseline' xs>
                   <Grid item>
@@ -102,7 +93,7 @@ function FilmDetail({ film, vote }) {
                   </Grid>
                 </Grid>
 
-                <Grid item container spacing={1} alignItems='baseline' className={classes.border} xs>
+                <Grid item container spacing={1} alignItems='baseline' xs>
                   <Grid item>
                     <Typography variant='h6' component='h3'>
                       Rating:
@@ -207,6 +198,7 @@ function FilmDetail({ film, vote }) {
           </Grid>
           </Grid>
       </Paper>
+      </Box>
     </div>
   )
 }
