@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Paper, Input, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Button } from '@material-ui/core';
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { BorderAllRounded } from '@material-ui/icons';
+
 
 /**SearchBar
  * 
@@ -62,25 +62,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
-
-/*
-
-  <form onSubmit={handleSubmit}>
-        <TextField
-          label='Seach Films'
-          name='searchTerm'
-          placeholder='Search by film title'
-          value={searchTerm}
-          onChange={handleChange}
-          color='primary'
-          variant='outlined'
-          size='small'
-          width='50ch'
-        />
-
-        <button type='submit'>Search</button>
-      </form>
-
-
-*/

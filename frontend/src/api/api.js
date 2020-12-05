@@ -33,31 +33,8 @@ class FilmApi {
   static async searchFilms(title) {
     const response = await this.request('films/', { title });
 
-    // Todo delete:
-    console.log('response in FilmApi.searchFilms:', response);
-    // Todo: why does the error thrown on line 26 immediately stop searchFilms from executing, 
-    // todo cont.: when removing lines 25 and 26, but using a try/catch block in searchFilms, does not immediately stop the function from executing (console.log still runs);
-    // TODO: this is why: when an error is thrown, control passed back to the first catch block in the call stack. Catch will just execute whatever you want when an error is encountered. 
-    /* When an error was encountered in request, the error was printed. Without throwing another error though, control went back to searchFilms, which then began executing the next line*/
-
     return response.films;
   }
-
-  // TODO: DELETE:
-  /**TEST */
-  // static async searchFilms(title) {
-  //   try {
-  //     const response = await this.request('films/', { title });
-
-  //     console.log('response in FilmApi.searchFilms:', response);
-
-  //     return response.films;
-  //   } catch (err) {
-  //     console.log('*****HERE in searchFilms');
-  //     console.error('Error in FilmApi.searchFilms!', err);
-  //   }
-  // }
-
 
   /** Get film detail by imdbID */
   static async filmDetail(imdbID) {

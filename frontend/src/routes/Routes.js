@@ -5,11 +5,12 @@ import HomePage from '../homepage/HomePage';
 import SearchContainer from '../search/SearchContainer';
 import FilmDetailContainer from '../film/FilmDetailContainer';
 
+
+
 /**Site-wide routes
  * 
  * Visiting a non-existent route redirects to the homepage
  */
-
  function Routes() {
 
   return(
