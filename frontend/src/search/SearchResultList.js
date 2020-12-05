@@ -20,9 +20,11 @@ function SearchResultList({ films, searchTerm }) {
 
   return(
     <article>
-      <Typography variant='h3' component='h1'>
-        Showing results for {searchTerm}
-      </Typography>
+      <Box pt={8} pb={4}>
+        <Typography variant='h4' component='h1' align='center'>
+          Showing results for <em>{searchTerm}</em>
+        </Typography>
+      </Box>  
 
       <Box 
         display='flex' 

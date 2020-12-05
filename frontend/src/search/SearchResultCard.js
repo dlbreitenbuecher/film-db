@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   link: {
     textDecoration: 'none',
     color: 'black'
-  }
+  },
 });
 
 // TODO Images need to all be the same width - Font size needs to fit container
@@ -78,14 +78,17 @@ function SearchResultCard({ title, year, imdbID, poster}) {
           border='2px solid black'
         />
         <CardContent>
-          <Typography gutterBottom variant='h5' component='h2' align='center' className={classes.title}>
+        {/* <Box display='flex' flexDirection='column' justifyContent='flex-end'> */}
+          <Typography gutterBottom variant='h6' component='h2' align='center' className={classes.title}>
             {title}
           </Typography>
 
           <Typography variant='body1' align='center'>
             {year}
           </Typography>
+        {/* </Box> */}
         </CardContent>
+
         </Box>
     </Card>
   )
