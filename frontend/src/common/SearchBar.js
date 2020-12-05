@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Paper, Input, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { BorderAllRounded } from '@material-ui/icons';
 
 /**SearchBar
  * 
