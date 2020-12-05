@@ -21,57 +21,57 @@ function SearchContainer() {
   console.debug('SearchContainer');
 
   // TODO - DELETE
-  const devProps = [
-    {
-      "title": "Grey Gardens",
-      "year": "1975",
-      "imdbID": "tt0073076",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNjQ0YzYwMzUtZjc5NS00OGQ3LWJjMmUtYmY5N2M3ZTA0NTY2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
-    },
-    {
-      "title": "Grey Gardens",
-      "year": "2009",
-      "imdbID": "tt0758751",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMTI0MDAzODM1Ml5BMl5BanBnXkFtZTcwODA1NzE0Mg@@._V1_SX300.jpg"
-    },
-    {
-      "title": "The Beales of Grey Gardens",
-      "year": "2006",
-      "imdbID": "tt0839739",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMTIzMjc3OTE3Nl5BMl5BanBnXkFtZTcwODY3MDA0MQ@@._V1_SX300.jpg"
-    }
-  ];
+  // const devProps = [
+  //   {
+  //     "title": "Grey Gardens",
+  //     "year": "1975",
+  //     "imdbID": "tt0073076",
+  //     "poster": "https://m.media-amazon.com/images/M/MV5BNjQ0YzYwMzUtZjc5NS00OGQ3LWJjMmUtYmY5N2M3ZTA0NTY2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+  //   },
+  //   {
+  //     "title": "Grey Gardens",
+  //     "year": "2009",
+  //     "imdbID": "tt0758751",
+  //     "poster": "https://m.media-amazon.com/images/M/MV5BMTI0MDAzODM1Ml5BMl5BanBnXkFtZTcwODA1NzE0Mg@@._V1_SX300.jpg"
+  //   },
+  //   {
+  //     "title": "The Beales of Grey Gardens",
+  //     "year": "2006",
+  //     "imdbID": "tt0839739",
+  //     "poster": "https://m.media-amazon.com/images/M/MV5BMTIzMjc3OTE3Nl5BMl5BanBnXkFtZTcwODY3MDA0MQ@@._V1_SX300.jpg"
+  //   }
+  // ];
 
-  const devTerm = 'Grey Gardens'
+  // const devTerm = 'Grey Gardens'
 
   const [isLoading, setIsLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(devTerm);
-  const [searchResults, setSearchResults] = useState(devProps);
+  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
 
   // TODO uncomment
 
   /**Call backend once user submits a search term */
-  // useEffect(function fetchFilmsOnSearch() {
-  //   async function fetchFilms() {
-  //     setIsLoading(true);
-  //     try {
-  //       const films = await FilmApi.searchFilms(searchTerm);
-  //       setSearchResults(films);
-  //       setIsLoading(false);
-  //     } catch (err) {
-  //       // NotFoundError thrown by backend if search term yields nothing from imdb API
-  //       console.error('Error in fetchFilms!', err);
-  //       setSearchResults([]);
-  //       setIsLoading(false);
-  //     }
-  //   }
+  useEffect(function fetchFilmsOnSearch() {
+    async function fetchFilms() {
+      setIsLoading(true);
+      try {
+        const films = await FilmApi.searchFilms(searchTerm);
+        setSearchResults(films);
+        setIsLoading(false);
+      } catch (err) {
+        // NotFoundError thrown by backend if search term yields nothing from imdb API
+        console.error('Error in fetchFilms!', err);
+        setSearchResults([]);
+        setIsLoading(false);
+      }
+    }
 
-  //   if (searchTerm !== null) {
-  //     fetchFilms();
-  //   }
-  // },
-  //   [searchTerm]
-  // );
+    if (searchTerm !== null) {
+      fetchFilms();
+    }
+  },
+    [searchTerm]
+  );
 
 
   /** Custome styles for Material UI components */
