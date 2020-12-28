@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SearchResultCard from './SearchResultCard';
 import { Typography, Box } from '@material-ui/core';
 
