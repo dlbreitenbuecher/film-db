@@ -19,6 +19,8 @@ import { ThumbUp, ThumbDown } from '@material-ui/icons';
 function FilmDetail({ film, vote }) {
   console.debug('FilmDetail');
 
+  console.log('film:', film);
+
   const { title, director, year, genre, description, rated, runtime,
     poster, thumbsUp, thumbsDown } = film;
 
@@ -173,7 +175,7 @@ function FilmDetail({ film, vote }) {
               </Grid>
 
               {/* Vote */}
-              <Grid item container spacing={2} alignItems='baseline' alignItems='center'>
+              <Grid item container spacing={2} alignItems='center'>
                 <Grid item>
                   <Typography variant='h6' component='h3'>
                     Vote!

@@ -5,7 +5,6 @@ import FilmDetail from './FilmDetail';
 import Header from '../common/Header';
 
 
-
 /**Container for Film Detail
  * Fetches data to display in FilmDetail component
  * 
@@ -82,6 +81,11 @@ function FilmDetailContainer() {
     <div className='FilmDetailContainer'>
       <Header />
       <div>
+
+        { isLoading &&
+          <p>Loading...</p>
+        }
+
         { filmDetail &&
           <FilmDetail film={filmDetail} vote={vote} />
         }
