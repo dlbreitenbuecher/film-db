@@ -19,8 +19,6 @@ import { ThumbUp, ThumbDown } from '@material-ui/icons';
 function FilmDetail({ film, vote }) {
   console.debug('FilmDetail');
 
-  console.log('film:', film);
-
   const { title, director, year, genre, description, rated, runtime,
     poster, thumbsUp, thumbsDown } = film;
 

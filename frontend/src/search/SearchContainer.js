@@ -51,7 +51,7 @@ function SearchContainer() {
 
     fetchFilms();
   },
-    [searchTerm, query]
+    [searchTerm]
   );
 
 
@@ -64,7 +64,9 @@ function SearchContainer() {
     if (queryString !== searchTerm) {
       setSearchTerm(queryString);
     }
-  })
+  },
+    [query, searchTerm]
+  )
 
 
   /** Custome styles for Material UI components */
