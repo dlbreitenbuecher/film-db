@@ -51,7 +51,7 @@ function SearchContainer() {
 
     fetchFilms();
   },
-    [searchTerm, searchResults]
+    [searchTerm, query]
   );
 
 
