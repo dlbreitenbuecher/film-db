@@ -6,6 +6,19 @@ import SearchBar from '../common/SearchBar';
 import './HomePage.css';
 
 
+const useStyles = makeStyles({
+  card: {
+    marginTop: 200,
+    textAlign: 'center',
+    backgroundColor: '#fafaf7'
+  },
+  cardContent: {
+    paddingTop: '0',
+    paddingBottom: '0'
+  }
+});
+
+
 /**Homepage of site
  * 
  * Show welcome message and search bar
@@ -17,16 +30,7 @@ import './HomePage.css';
 function HomePage() {
   console.debug('HomePage');
 
-  const useStyles = makeStyles({
-    root: {
-      marginTop: 200,
-      textAlign: 'center'
-    },
-  });
-
-
   const classes = useStyles();
-
 
   return (
     <div>
@@ -35,16 +39,27 @@ function HomePage() {
       <div className='HomePage'>
         <Box display='flex' justifyContent='center'>
           <Box width={5 / 10} maxWidth={700}>
-            <Card className={classes.root}>
-              <CardHeader title='Welcome to Film-DB!'>
-              </CardHeader>
-              <CardContent>
-                <Box mb={4}>
+            <Card className={classes.card}>
+              <Box mt='60px'>
+                <CardHeader
+                  title='Welcome to Film-DB!'
+                  titleTypographyProps={{
+                    component: 'h1',
+                    variant: 'h3',
+                    paragraph: 'true'
+                  }}
+                  subheader='Search For, Read About, and Rate your Favorite Films!'
+                />
+              </Box>
+              <CardContent className={classes.cardContent}>
+                {/* <Box mb={4}>
                   <Typography variant='subtitle1'>
                     Search For, Read About, and Rate your Favorite Films!
                   </Typography>
+                </Box> */}
+                <Box mt='60px' mb='120px'>
+                  <SearchBar />
                 </Box>
-                <SearchBar />
               </CardContent>
 
             </Card>
