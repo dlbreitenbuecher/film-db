@@ -7,7 +7,7 @@ Search for, read about, and vote on films. Data comes from IMDB
 ### Set up backend
 1. Clone the repo
 2. Navigate to the backend folder in the file directory
-3.  Set up your database with: `psql < schema.sql`
+3.  Set up your database with: `psql < film-db.sql`
 4.  Install your dependencies with `npm install`
 5.  Create a .ENV file. Email for the necessary API Secret Key
 6.  Start your backend server`nodemon`
