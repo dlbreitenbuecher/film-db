@@ -21,4 +21,7 @@ Search for, read about, and vote on films. Data comes from IMDB
 ### Running tests in the backend
 `npm test`
 
-To view  gif of the app, please visit: https://recordit.co/I09zDdPpqe
+## Production Version
+Visit [Film-DB](https://film-db.davidbreitenbuecher.com/)!
+
+Or: [view a gif of the app](https://recordit.co/I09zDdPpqe)
